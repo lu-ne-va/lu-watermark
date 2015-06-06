@@ -1,0 +1,8 @@
+node_modules
+app/bower
+dist
+.idea
+app/css/bundle.css
+app/index.html
+.DS_Store
+app/upload/images/files

@@ -1,0 +1,105 @@
+extends layout.jade
+
+block title
+    title Генератор водяных знаков
+
+block content
+    .wrapper
+        .lang-buttons.language.easing
+            .lang-block.language__rus
+                a.lang__link.lang__link__rus(href="javascript://") РУС
+            .lang-block.language__eng
+                a.lang__link.lang__link__eng(href="javascript://") ENG
+        .soc-web.easing
+            .soc-like
+            .soc-icons
+                .soc-icons-fb
+                    a#fb(href="javascript://") Facebook
+                .soc-icons-tw
+                    a#twitter(href="javascript://") Twitter
+                .soc-icons-vk
+                    a#vk(href="javascript://") VKontakte
+        .container.cl
+            .main-bl
+                .main-title Генератор водяных знаков
+                .watermark-work
+                    .aim-img
+
+            .controls-bl
+                .controls-title Настройки
+                form.form
+                    input(type="hidden", name="aim-img")
+                    input(type="hidden", name="watermark")
+                    input(type="hidden", name="opacity" value="1")
+                    input(type="hidden", name="mode")
+                    //- Блок загрузки изображений
+                    .form__group
+                        label.form__label.original-image Исходное изображение
+                        .form__input.input-group
+                            input.input-group__input(placeholder="image.jpg", id="image", disabled)
+                            .input-group__icon
+                                input.input-group__file-load(type="file", data-file-name-input="#image")
+                    .form__group
+                        label.form__label.watermark-image Водяной знак
+                        .form__input.input-group
+                            input.input-group__input(placeholder="image.png", id="watermark", disabled)
+                            .input-group__icon
+                                input.input-group__file-load(type="file", data-file-name-input="#watermark")
+                    .separator
+                    //- Блок настройки положения
+                    .form__group
+                        .placement
+                            label.form__label.place-title Положение
+                            .placement-select
+                                .placement-select__item.placement-select__item_single.active(data-select-placement="#chooseSingle")
+                                .placement-select__item.placement-select__item_multi(data-select-placement="#chooseMulti")
+                        .position-select.position-select_single.active(id="chooseSingle")
+                            .position-select__choose.choose-position
+                                .choose-position__item.choose-position__item_single.active(id="top-left")
+                                .choose-position__item.choose-position__item_single(id="top-center")
+                                .choose-position__item.choose-position__item_single(id="top-right")
+                                .choose-position__item.choose-position__item_single(id="middle-left")
+                                .choose-position__item.choose-position__item_single(id="middle-center")
+                                .choose-position__item.choose-position__item_single(id="middle-right")
+                                .choose-position__item.choose-position__item_single(id="bottom-left")
+                                .choose-position__item.choose-position__item_single(id="bottom-center")
+                                .choose-position__item.choose-position__item_single(id="bottom-right")
+
+                            .position-select__count.count-position
+                                .input-group_count
+                                    label.input-group__label_count(for="moveX") X
+                                    input.count-position__item.count-position__item_x(id="moveX", name="value_x", value="0")
+                                .input-group_count
+                                    label.input-group__label_count(for="moveY") Y
+                                    input.count-position__item.count-position__item_y(id="moveY", name="value_y", value="0")
+                        .position-select.position-select_multi(id="chooseMulti")
+                            .position-select__choose.choose-position
+                                .choose-position__margin.choose-position__margin_right
+                                .choose-position__margin.choose-position__margin_bottom
+                                .choose-position__item
+                                .choose-position__item
+                                .choose-position__item
+                                .choose-position__item
+                                .choose-position__item
+                                .choose-position__item
+                                .choose-position__item
+                                .choose-position__item
+                                .choose-position__item
+
+                            .position-select__count.count-position
+                                .input-group_count
+                                    label.input-group__label_count(for="margin-right") X
+                                    input.count-position__item.count-position__item_x(id="margin-right", name="value_right", value="0")
+                                .input-group_count
+                                    label.input-group__label_count(for="margin-bottom") Y
+                                    input.count-position__item.count-position__item_y(id="margin-bottom", name="value_bottom", value="0")
+                    .separator
+                    //- Блок прозрачности
+                    .form__group
+                        label.input-group__label.transparency-title Прозрачность
+                        .input-group__slider(id="opacity")
+                    .separator
+                    //- Блок кнопок
+                    .btn__box
+                        button.btn.btn__clear(type="reset") Сброс
+                        button.btn.btn__save(type="submit") Скачать

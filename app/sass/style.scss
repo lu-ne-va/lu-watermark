@@ -1,0 +1,315 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background: rgba(0, 0, 0, 0) url(../img/page-bg.jpg) top center;
+    background-size: cover;
+    color: #fff;
+    font-size: 1em;
+    line-height: 1.4;
+    font: 14px/1.41 Arial, Helvetica, sans-serif;
+}
+
+ul, li {
+    list-style: none;
+}
+
+input, textarea {
+    outline: none;
+}
+
+input:active, textarea:active {
+    outline: none;
+}
+
+:focus {
+    outline: none;
+}
+
+textarea {
+    resize: none;
+}
+
+.easing, .easing * {
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+}
+
+.box-s {
+    webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/*--- Clearfix : start ---------------*/
+.cl:before,
+.cl:after {
+    content: " ";
+    display: table;
+}
+
+.cl:after {
+    clear: both;
+}
+
+/*--- Clearfix : end ---------------*/
+
+.wrapper-all {
+    position: relative;
+    min-height: 100%;
+}
+
+.wrapper-all:before {
+    content: "";
+    height: 60px;
+    display: block
+}
+
+.wrapper-all:after {
+    content: "";
+    height: 50px;
+    display: block;
+}
+
+// footer 
+.footer {
+    display: block;
+    height: 50px;
+    margin-top: -50px;
+    width: 100%;
+    text-align: center;
+}
+
+.footer-wrap {
+    display: inline-block;
+    line-height: 50px;
+}
+
+.footer-copi {
+    font-family: 'fira_sanslight';
+    color: #fff;
+    font-size: 12px;
+}
+
+// ---------------------------------------
+
+.container {
+    width: 960px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.main-bl {
+    background-color: rgba(46, 54, 65, 0.64);
+    width: 702px;
+    height: 670px;
+    float: left;
+    display: block;
+    position: relative;
+}
+
+.main-title {
+    font-family: "SegoeUILight";
+    font-weight: normal;
+    font-style: normal;
+    color: #fff;
+    font-size: 36px;
+    line-height: 1em;
+    margin: 15px 22px 60px;
+}
+
+.watermark-work {
+    background-color: #fff;
+    // background-image:url("../img/watermark-work-bg.png");
+    // background-position:0 0;
+    // background-repeat:repeat;
+    width: 650px;
+    height: 535px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    display: block
+
+}
+
+// --------------------------------------
+.controls-bl {
+    background-color: #f1f1f5;
+    width: 258px;
+    height: 670px;
+    float: left;
+    display: block;
+}
+
+.controls-title {
+    display: block;
+    text-align: center;
+    margin: 26px 0 35px -4px;
+    font-family: 'roboto-light';
+    line-height: 26px;
+    color: #2e3641;
+    font-size: 26px;
+}
+
+.controls-wrap {
+    position: relative;
+    border-bottom: 1px solid rgba(249, 126, 118, 0.4);
+}
+
+.controls-wrap:before {
+    position: absolute;
+    z-index: 5;
+    bottom: -9px;
+    left: 50%;
+    margin-left: -9px;
+    content: '';
+    border-top: 10px solid #f1f1f5;
+    border-right: 9px solid transparent;
+    border-left: 9px solid transparent;
+}
+
+.controls-wrap:after {
+    position: absolute;
+    z-index: 2;
+    bottom: -10px;
+    left: 50%;
+    margin-left: -9px;
+    content: '';
+    border-top: 10px solid rgba(249, 126, 118, 0.4);
+    border-right: 9px solid transparent;
+    border-left: 9px solid transparent;
+}
+
+.aim-img {
+    overflow: hidden;
+    position: relative;
+}
+
+.watermark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: move;
+
+    &.multy {
+        width: 1000px;
+
+    }
+}
+
+.lang-buttons {
+    position: absolute;
+    top: 101px;
+}
+
+.lang-block {
+    height: 35px;
+    width: 43px;
+    color: #8e9298;
+    background-color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    vertical-align: middle;
+    margin-bottom: 1px;
+    font-size: 19px;
+    padding: 4px 0;
+    box-sizing: border-box;
+    font-family: "SegoeUILight";
+}
+
+.soc-web {
+    position: absolute;
+    top: 188px;
+}
+
+.soc-icons-fb, .soc-icons-vk, .soc-icons-tw {
+    height: 40px;
+    width: 44px;
+    background-image: url(../img/left-buttons.png);
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.soc-icons-fb {
+    background-position: -6px -7px;
+    &:hover {
+        background-position: -60px -7px
+    }
+}
+
+.soc-icons-tw {
+    background-position: -6px -51px;
+    &:hover {
+        background-position: -61px -51px
+    }
+}
+
+.soc-icons-vk {
+    background-position: -7px 94px;
+    &:hover {
+        background-position: -61px 94px
+    }
+}
+
+
+
+.main-title { 
+    opacity:0;
+}
+.lang__link { 
+    text-decoration:none; 
+    color:#8e9298;
+}
+.lang__link:hover { 
+    color:#444a53;
+}
+.soc-web { 
+    left:-44px;
+}
+.soc-like { 
+    position:absolute; 
+    top:0; 
+    left:44px; 
+    width:43px; 
+    height:41px; 
+    background-image:url(../img/finger-icon.png); 
+    background-repeat:no-repeat; 
+    background-position:50% 50%; 
+    background-color:rgba(255,255,255,.7); 
+    cursor:pointer; 
+}
+.soc-web:hover { 
+    left:0;
+}
+
+.soc-icons-fb , 
+.soc-icons-tw, 
+.soc-icons-vk { 
+    cursor:pointer;
+}
+.soc-icons-fb a,
+.soc-icons-tw a,
+.soc-icons-vk a { 
+    text-indent: -999px; 
+    display: block; 
+    height: 41px;
+}
+
+.watermark-work { 
+    background-repeat:repeat; 
+    background-position:0 0; 
+    background-color:#fff; 
+}
+.watermark-work[data-bg="watermark-work-rus"] { 
+    background-image:url(../img/watermark-work-bg.png); 
+}
+.watermark-work[data-bg="watermark-work-eng"] {
+    background-image:url(../img/watermark-work-bg-eng.png); 
+}
