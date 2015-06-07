@@ -6,15 +6,8 @@ var gulp = require('gulp'),
 	browserSync = require("browser-sync"),
 	prettify = require("gulp-prettify"),
 	wiredep = require('wiredep').stream,
-	useref = require('gulp-useref'),
 	concatCss = require('gulp-concat-css'),
-	minifyCss = require('gulp-minify-css'),
-	uglify = require('gulp-uglify'),
-	gulpif = require('gulp-if'),
-	clean = require('gulp-clean'),
-	filter = require('gulp-filter'),
 	imagemin = require('gulp-imagemin'),
-	size = require('gulp-size'),
 	reload = browserSync.reload;
 
 
@@ -78,35 +71,6 @@ gulp.task('watch', function(){
 gulp.task('default', ['server', 'watch']);
 
 
-// =========================================
-// =========================================
-// ============= Сборка DIST ===============
-
-// Очистка папки
-gulp.task('clean', function(){
-	return gulp.src('dist')
-		.pipe(clean());
-});
-
-// Переносим HTML, CSS, JS в папку dist
-gulp.task('useref', function(){
-	var assets = useref.assets();
-	return gulp.src('app/*.html')
-		.pipe(assets)
-		.pipe(gulpif('*.js', uglify()))
-		.pipe(gulpif('*.css', minifyCss()))
-		.pipe(assets.restore())
-		.pipe(useref())
-		.pipe(gulp.dest('dist'));
-});
-
-// Перенос шрифтов
-gulp.task('fonts', function(){
-	gulp.src('app/fonts/*')
-        .pipe(filter(['*.eot','*.svg','*.ttf','*.woff','*.woff2']))
-        .pipe(gulp.dest('dist/fonts/'))
-});
-
 // Картинки
 gulp.task('images', function(){
 	return gulp.src('app/img/**/*')
@@ -115,26 +79,6 @@ gulp.task('images', function(){
 			interlaced: true
 		}))
 		.pipe(gulp.dest('dist/img'));
-});
-
-
-// Остальные файлы, такие как favicon.ico и пр.
-gulp.task('extras', function(){
-	gulp.src([
-		'app/*.*',
-		'!app/*.html'
-	]).pipe(gulp.dest('dist'));
-});
-
-
-// Сборка и вывод размера содержимого папки dist
-gulp.task('dist', ['useref', 'images', 'fonts', 'extras'], function(){
-	return gulp.src('dist/**/*').pipe(size({title: 'build'}));
-});
-
-// Собираем папку DIST (толлько после компиляции Jade)
-gulp.task('build', ['clean', 'jade'], function(){
-	gulp.start('dist');
 });
 
 // Проверка сборки
@@ -164,5 +108,5 @@ var log = function (error){
 		''
 	].join('\n'));
 	this.end();
-}
+};
 

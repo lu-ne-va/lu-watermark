@@ -284,7 +284,7 @@ $(function () {
             },
             success: function (response){
 
-                document.location.href='/download.php';
+                document.location.href='/php/download.php';
 
             },
             error: function (response) {
