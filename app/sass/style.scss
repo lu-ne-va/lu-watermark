@@ -13,7 +13,7 @@ body {
     color: #fff;
     font-size: 1em;
     line-height: 1.4;
-    font: 14px/1.41 Arial, Helvetica, sans-serif;
+    font-family: 'roboto-light', sans-serif;
 }
 
 ul, li {
@@ -95,7 +95,6 @@ textarea {
 }
 
 .footer-copi {
-    font-family: 'fira_sanslight';
     color: #fff;
     font-size: 12px;
 }
@@ -118,7 +117,6 @@ textarea {
 }
 
 .main-title {
-    font-family: "SegoeUILight";
     font-weight: normal;
     font-style: normal;
     color: #fff;
@@ -154,7 +152,6 @@ textarea {
     display: block;
     text-align: center;
     margin: 26px 0 35px -4px;
-    font-family: 'roboto-light';
     line-height: 26px;
     color: #2e3641;
     font-size: 26px;
@@ -222,7 +219,6 @@ textarea {
     font-size: 19px;
     padding: 4px 0;
     box-sizing: border-box;
-    font-family: "SegoeUILight";
 }
 
 .soc-web {
