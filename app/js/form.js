@@ -11,14 +11,14 @@ $(function () {
         }),
         marginBottom = $("#margin-bottom").spinner({
             min: 0
-        }),
-        opacity = $("#opacity").slider({
-            range: "min",
-            value: 100,
-            orientation: "horizontal",
-            slide: refreshOpacity,
-            change: refreshOpacity
         });
+        //opacity = $("#opacity").slider({
+        //    range: "min",
+        //    value: 100,
+        //    orientation: "horizontal",
+        //    slide: refreshOpacity,
+        //    change: refreshOpacity
+        //});
 
     //Переключение между режимами отображения водяного знака (один или мульти)
     $(".placement-select__item").on("click", function () {
@@ -37,7 +37,7 @@ $(function () {
             //Используем сохраненное значение в случае переключения между режимами мульти и сингл
             watermark.setRightMargin(marginRight.val());
             watermark.setBottomMargin(marginBottom.val());
-            refreshOpacity();
+            Opacity.refreshValue();
 
         } else {
             $draggable_elem = watermark.init(imgFile);
@@ -52,7 +52,7 @@ $(function () {
 
             //Используем сохраненное значение в случае переключения между режимами мульти и сингл
             watermark.setPosition({x: moveX.val(), y: moveY.val()});
-            refreshOpacity();
+            Opacity.refreshValue();
 
         }
 
@@ -101,12 +101,6 @@ $(function () {
         watermark.setBottomMargin(marginBottomVal);
     });
 
-    function refreshOpacity() {
-        var opacity = $("#opacity").slider('value') / 100;
-        $('.watermark').css({'opacity': opacity});
-
-        $('input[name=opacity]').val(opacity);
-    }
 
 
     //Режим сингл: позиционирование водяного знака
@@ -218,7 +212,7 @@ $(function () {
         var $input = $("input[data-file-name-input='"+id+"' ]");
 
         $input.fileupload({
-            url: 'upload/images/index.php',
+            url: '/upload/images/index.php',
             dataType: 'json',
             //disableImageResize: /Android(?!.*Chrome)|Opera/.test(window.navigator && navigator.userAgent),
             disableImageResize: false,
@@ -275,7 +269,7 @@ $(function () {
         var data    = $(this).serialize();
         
         $.ajax({
-            url: 'merge.php',
+            url: '/merge.php',
             type: 'POST',
             dataType: 'json',
             data: data,
@@ -284,7 +278,7 @@ $(function () {
             },
             success: function (response){
 
-                document.location.href='/php/download.php';
+                document.location.href='/download.php';
 
             },
             error: function (response) {

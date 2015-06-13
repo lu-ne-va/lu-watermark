@@ -30,7 +30,7 @@ block content
                 form.form
                     input(type="hidden", name="aim-img")
                     input(type="hidden", name="watermark")
-                    input(type="hidden", name="opacity" value="1")
+                    input(type="hidden", name="opacity")
                     input(type="hidden", name="mode")
                     //- Блок загрузки изображений
                     .form__group
@@ -97,7 +97,9 @@ block content
                     //- Блок прозрачности
                     .form__group
                         label.input-group__label.transparency-title Прозрачность
-                        .input-group__slider(id="opacity")
+                        .slider(id="opacity")
+                            .slider__trumb(id="trumb")
+                            .slider__progress(id="progress")
                     .separator
                     //- Блок кнопок
                     .btn__box
