@@ -201,6 +201,15 @@ textarea {
     left: 0;
     cursor: move;
 
+
+    // УБРАТЬ!!!!
+
+    //width: 40px;
+    //height: 50px;
+    //background-color: red;
+
+    //
+
     &.multy {
         width: 1000px;
 
@@ -305,7 +314,8 @@ textarea {
 .watermark-work { 
     background-repeat:repeat; 
     background-position:0 0; 
-    background-color:#fff; 
+    background-color:#fff;
+    position: relative;
 }
 .watermark-work[data-bg="watermark-work-rus"] { 
     background-image:url(../img/watermark-work-bg.png); 

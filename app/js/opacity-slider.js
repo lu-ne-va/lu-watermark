@@ -87,13 +87,150 @@ var Slider = function (params) {
     }
 };
 
-Opacity = new Slider({
-    change: refreshOpacity,
-    trumbSelector: '#trumb',
-    sliderSelector: '#opacity',
-    progressSelector: '#progress'
-});
 
+//Opacity = new Slider({
+//    change: refreshOpacity,
+//    trumbSelector: '#trumb',
+//    sliderSelector: '#opacity',
+//    progressSelector: '#progress'
+//});
+
+
+var DragDrop = function (params) {
+    var dragabbleElement = document.querySelector(params.trumbSelector),
+        slider = document.querySelector(params.sliderSelector),
+        coords;
+    var boxCoords;
+    var shiftX;
+    var shiftY;
+    var sliderWidth = slider.offsetWidth;
+    var sliderHeidht = slider.offsetHeight;
+    var dragabbleElementWidth = dragabbleElement.offsetWidth;
+    var dragabbleElementHeight = dragabbleElement.offsetHeight;
+    //var maxLeft = sliderWidth - dragabbleElementWidth;
+    //var maxTop = sliderHeidht - dragabbleElementHeight;
+    var inputX = document.querySelector(params.inputX);
+    var inputY = document.querySelector(params.inputY);
+
+
+    /**
+     * Определяет координаты елемента
+     * @param elem
+     * @returns {{top: number, left: number}}
+     */
+
+    function getCoords(elem) {
+        var box = elem.getBoundingClientRect();
+
+        return {
+            top: box.top + pageYOffset,
+            left: box.left + pageXOffset
+        };
+    }
+
+    /**
+     * Обработчик события нажатия
+     * @param e
+     */
+
+    dragabbleElement.onmousedown = function (e) {
+        coords = getCoords(dragabbleElement);
+        boxCoords = getCoords(slider);
+        shiftX = e.pageX - coords.left;
+        shiftY = e.pageY - coords.top;
+
+        moveAt(e);
+        dragabbleElement.style.zIndex = 1000;
+
+
+        /**
+         * Расчет координат
+         * @param e
+         */
+        function moveAt(e) {
+            var left = e.pageX - boxCoords.left - shiftX,
+                top = e.pageY - boxCoords.top - shiftY;
+
+            dragabbleElement.style.left = ~~left + 'px';
+            inputX.value = ~~left;
+            dragabbleElement.style.top = ~~top + 'px';
+            inputY.value = ~~top;
+
+            document.onmousemove = function (e) {
+                moveAt(e);
+            };
+
+        }
+
+        document.onmouseup = function () {
+            document.onmousemove = null;
+            dragabbleElement.onmouseup = null;
+        };
+
+        dragabbleElement.ondragstart = function () {
+            return false;
+        };
+
+        params.change(opacity);
+
+        return {
+            refreshValue: function () {
+                params.change(opacity)
+            }
+        }
+    };
+};
+
+//Watermark = new DragDrop({
+//    change: refreshOpacity,
+//    trumbSelector: '.watermark',
+//    sliderSelector: '.aim-img',
+//    inputY: '#moveY',
+//    inputX: '#moveX'
+//});
+
+//Watermark = new DragDrop({
+//    change: refreshOpacity,
+//    trumbSelector: '.watermark',
+//    sliderSelector: '.aim-img',
+//    inputY: '#moveY',
+//    inputX: '#moveX'
+//});
+
+
+//Повесить создание объекта на событие загрузки вотермарки
+
+//function createWatrmark() {
+//    var watermark = document.querySelector('#watermark');
+//
+//    if ('onchange' in watermark) {
+//        //Watermark = new DragDrop({
+//        //    //change: refreshOpacity,
+//        //    trumbSelector: '.watermark',
+//        //    sliderSelector: '.aim-img',
+//        //    inputY: '#moveY',
+//        //    inputX: '#moveX'
+//        //});
+//        ////Opacity = new Slider({
+//        ////    change: refreshOpacity,
+//        ////    trumbSelector: '#trumb',
+//        ////    sliderSelector: '#opacity',
+//        ////    progressSelector: '#progress'
+//        ////});
+//    }
+//}
+
+
+
+/*
+Что-то пошло не так!!
+ */
+//Opacity = new Slider({
+//    change: refreshOpacity,
+//    trumbSelector: '#trumb',
+//    sliderSelector: '#opacity',
+//    progressSelector: '#progress'
+//});
 
 /**
  * Применяет значение прозрачности к водяному знаку
@@ -102,7 +239,7 @@ Opacity = new Slider({
  */
 function refreshOpacity(value) {
     var opacity = value / 100;
-    $('.watermark').css({'opacity': opacity});
-    $('input[name=opacity]').val(opacity);
+    document.querySelector('.watermark').style.opacity = opacity;
+    document.querySelector('input[name=opacity]').value = opacity;
 }
 

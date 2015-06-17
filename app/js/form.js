@@ -1,7 +1,10 @@
 "use strict";
 
 $(function () {
-    var imgFile = '';
+    var imgFile = '',
+        Opacity,
+        Watermark;
+
     //Включаем UI объекты определяющие положение и прозрачность водянного(ых) знака
     var $draggable_elem,
         moveX = $("#moveX").spinner(),
@@ -12,13 +15,13 @@ $(function () {
         marginBottom = $("#margin-bottom").spinner({
             min: 0
         });
-        //opacity = $("#opacity").slider({
-        //    range: "min",
-        //    value: 100,
-        //    orientation: "horizontal",
-        //    slide: refreshOpacity,
-        //    change: refreshOpacity
-        //});
+    //opacity = $("#opacity").slider({
+    //    range: "min",
+    //    value: 100,
+    //    orientation: "horizontal",
+    //    slide: refreshOpacity,
+    //    change: refreshOpacity
+    //});
 
     //Переключение между режимами отображения водяного знака (один или мульти)
     $(".placement-select__item").on("click", function () {
@@ -100,7 +103,6 @@ $(function () {
 
         watermark.setBottomMargin(marginBottomVal);
     });
-
 
 
     //Режим сингл: позиционирование водяного знака
@@ -209,7 +211,7 @@ $(function () {
 
     function UploadImg(id) {
 
-        var $input = $("input[data-file-name-input='"+id+"' ]");
+        var $input = $("input[data-file-name-input='" + id + "' ]");
 
         $input.fileupload({
             url: '/upload/images/index.php',
@@ -228,9 +230,24 @@ $(function () {
             },
             done: function (e, data) {
                 $.each(data.result.files, function (index, file) {
-                    addImg('resized/'+file.name, id);
-
+                    addImg('resized/' + file.name, id);
                 });
+
+                if (id === '#watermark') {
+                    Watermark = new DragDrop({
+                        change: refreshOpacity,
+                        trumbSelector: '.watermark',
+                        sliderSelector: '.aim-img',
+                        inputY: '#moveY',
+                        inputX: '#moveX'
+                    });
+                    Opacity = new Slider({
+                        change: refreshOpacity,
+                        trumbSelector: '#trumb',
+                        sliderSelector: '#opacity',
+                        progressSelector: '#progress'
+                    });
+                }
             },
 
             fail: function (e, data) {
@@ -239,15 +256,16 @@ $(function () {
     }
 
     function addImg(fileName, container) {
-        var src = IMG_SRC + fileName;        
-            if (container === '#image') {
-                $('.aim-img>img').remove();
-                $wm.append('<img src="'+src+'">');
+        var src = IMG_SRC + fileName;
+        if (container === '#image') {
+            $('.aim-img>img').remove();
+            $wm.append('<img src="' + src + '">');
 
-            }else{
-               imgFile = src;
-               watermark.init(imgFile, 'single'); 
-            }
+        } else {
+            imgFile = src;
+            watermark.init(imgFile, 'single');
+
+        }
 
     }
 
@@ -266,8 +284,8 @@ $(function () {
         $('input[name=aim-img]').val($('.aim-img>img').attr('src'));
         $('input[name=watermark]').val($('.wm_image').attr('src'));
 
-        var data    = $(this).serialize();
-        
+        var data = $(this).serialize();
+
         $.ajax({
             url: '/merge.php',
             type: 'POST',
@@ -276,16 +294,16 @@ $(function () {
             beforeSend: function () {
 
             },
-            success: function (response){
+            success: function (response) {
 
-                document.location.href='/download.php';
+                document.location.href = '/download.php';
 
             },
             error: function (response) {
 
             }
         });
-        
+
         e.preventDefault(e);
 
 
@@ -293,10 +311,9 @@ $(function () {
     });
 
 
-
-    function checkUploadImg(){
-        if(!$('.aim-img img').length) return false;
-        if(!watermark.is_inited) return false;
+    function checkUploadImg() {
+        if (!$('.aim-img img').length) return false;
+        if (!watermark.is_inited) return false;
         return true;
     }
 });
