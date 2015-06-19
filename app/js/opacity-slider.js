@@ -87,15 +87,6 @@ var Slider = function (params) {
     }
 };
 
-
-//Opacity = new Slider({
-//    change: refreshOpacity,
-//    trumbSelector: '#trumb',
-//    sliderSelector: '#opacity',
-//    progressSelector: '#progress'
-//});
-
-
 var DragDrop = function (params) {
     var dragabbleElement = document.querySelector(params.trumbSelector),
         slider = document.querySelector(params.sliderSelector),
@@ -180,57 +171,6 @@ var DragDrop = function (params) {
         }
     };
 };
-
-//Watermark = new DragDrop({
-//    change: refreshOpacity,
-//    trumbSelector: '.watermark',
-//    sliderSelector: '.aim-img',
-//    inputY: '#moveY',
-//    inputX: '#moveX'
-//});
-
-//Watermark = new DragDrop({
-//    change: refreshOpacity,
-//    trumbSelector: '.watermark',
-//    sliderSelector: '.aim-img',
-//    inputY: '#moveY',
-//    inputX: '#moveX'
-//});
-
-
-//Повесить создание объекта на событие загрузки вотермарки
-
-//function createWatrmark() {
-//    var watermark = document.querySelector('#watermark');
-//
-//    if ('onchange' in watermark) {
-//        //Watermark = new DragDrop({
-//        //    //change: refreshOpacity,
-//        //    trumbSelector: '.watermark',
-//        //    sliderSelector: '.aim-img',
-//        //    inputY: '#moveY',
-//        //    inputX: '#moveX'
-//        //});
-//        ////Opacity = new Slider({
-//        ////    change: refreshOpacity,
-//        ////    trumbSelector: '#trumb',
-//        ////    sliderSelector: '#opacity',
-//        ////    progressSelector: '#progress'
-//        ////});
-//    }
-//}
-
-
-
-/*
-Что-то пошло не так!!
- */
-//Opacity = new Slider({
-//    change: refreshOpacity,
-//    trumbSelector: '#trumb',
-//    sliderSelector: '#opacity',
-//    progressSelector: '#progress'
-//});
 
 /**
  * Применяет значение прозрачности к водяному знаку

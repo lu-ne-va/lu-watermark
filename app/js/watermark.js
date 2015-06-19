@@ -77,20 +77,20 @@ var watermark = function () {
         });
     };
 
-    var _initMultyMode = function () {
-
-        $draggable_elem = _getDraggableElem('multy');
-        var $img = _getWmImg();
-
-        for (i = 0; i < 1000; i++) {
-            $draggable_elem.append($img.clone());
-        }
-
-        $draggable_elem.appendTo('.aim-img');
-        $draggable_elem.draggable({
-            stop: _stop
-        });
-    };
+    //var _initMultyMode = function () {
+    //
+    //    $draggable_elem = _getDraggableElem('multy');
+    //    var $img = _getWmImg();
+    //
+    //    for (i = 0; i < 1000; i++) {
+    //        $draggable_elem.append($img.clone());
+    //    }
+    //
+    //    $draggable_elem.appendTo('.aim-img');
+    //    $draggable_elem.draggable({
+    //        stop: _stop
+    //    });
+    //};
 
     var _getDraggableElem = function (add_class) {
         return $('<div class="' + wm_class + ' ' + add_class + '"></div>');

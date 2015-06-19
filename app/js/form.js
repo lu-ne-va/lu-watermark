@@ -1,10 +1,10 @@
 "use strict";
 
-$(function () {
-    var imgFile = '',
-        Opacity,
-        Watermark;
+var imgFile = '',
+    Opacity,
+    Watermark;
 
+$(function () {
     //Включаем UI объекты определяющие положение и прозрачность водянного(ых) знака
     var $draggable_elem,
         moveX = $("#moveX").spinner(),
@@ -23,43 +23,43 @@ $(function () {
     //    change: refreshOpacity
     //});
 
-    //Переключение между режимами отображения водяного знака (один или мульти)
-    $(".placement-select__item").on("click", function () {
-        var $this = $(this),
-            id = $this.data('select-placement');
-
-        $(id).addClass('active').siblings('.position-select').removeClass('active');
-        $this.addClass('active').siblings('.placement-select__item').removeClass('active');
-
-        // var imgFile = '/img/watermark.jpg'; // todo - это значение надо инизиализировать при загрузке изображения
-
-        if ($this.hasClass('placement-select__item_multi')) {
-            watermark.init(imgFile, 'multy');
-            $('input[name=mode]').val('multy');
-
-            //Используем сохраненное значение в случае переключения между режимами мульти и сингл
-            watermark.setRightMargin(marginRight.val());
-            watermark.setBottomMargin(marginBottom.val());
-            Opacity.refreshValue();
-
-        } else {
-            $draggable_elem = watermark.init(imgFile);
-
-            //Отображаем координаты при их изменении способом Драг энд Дроп
-            $draggable_elem.on("drag", function (event, ui) {
-                moveX.val(ui.position.left);
-                moveY.val(ui.position.top);
-            });
-
-            $('input[name=mode]').val('single');
-
-            //Используем сохраненное значение в случае переключения между режимами мульти и сингл
-            watermark.setPosition({x: moveX.val(), y: moveY.val()});
-            Opacity.refreshValue();
-
-        }
-
-    });
+    ////Переключение между режимами отображения водяного знака (один или мульти)
+    //$(".placement-select__item").on("click", function () {
+    //    var $this = $(this),
+    //        id = $this.data('select-placement');
+    //
+    //    $(id).addClass('active').siblings('.position-select').removeClass('active');
+    //    $this.addClass('active').siblings('.placement-select__item').removeClass('active');
+    //
+    //    // var imgFile = '/img/watermark.jpg'; // todo - это значение надо инизиализировать при загрузке изображения
+    //
+    //    if ($this.hasClass('placement-select__item_multi')) {
+    //        watermark.init(imgFile, 'multy');
+    //        $('input[name=mode]').val('multy');
+    //
+    //        //Используем сохраненное значение в случае переключения между режимами мульти и сингл
+    //        watermark.setRightMargin(marginRight.val());
+    //        watermark.setBottomMargin(marginBottom.val());
+    //        Opacity.refreshValue();
+    //
+    //    } else {
+    //        $draggable_elem = watermark.init(imgFile);
+    //
+    //        //Отображаем координаты при их изменении способом Драг энд Дроп
+    //        $draggable_elem.on("drag", function (event, ui) {
+    //            moveX.val(ui.position.left);
+    //            moveY.val(ui.position.top);
+    //        });
+    //
+    //        $('input[name=mode]').val('single');
+    //
+    //        //Используем сохраненное значение в случае переключения между режимами мульти и сингл
+    //        watermark.setPosition({x: moveX.val(), y: moveY.val()});
+    //        Opacity.refreshValue();
+    //
+    //    }
+    //
+    //});
 
     //Отображаем в кастомном инпуте имя загруженного файла
     $('input[type=file]').change(function () {
@@ -208,7 +208,11 @@ $(function () {
     var MAX_FILE_SIZE = 2000000;
     var $wm = $('.aim-img');
 
-
+    /**
+     * загрузка файлов
+     * @param id
+     * @constructor
+     */
     function UploadImg(id) {
 
         var $input = $("input[data-file-name-input='" + id + "' ]");
